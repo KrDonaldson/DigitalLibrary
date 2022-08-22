@@ -23,7 +23,7 @@ def register():
 
 
             flash(f'You have successfully created a user account {email}', 'User-created')
-            return redirect(url_for('site.home'))
+            return redirect(url_for('auth.login'))
     except:
         raise Exception('Invalid form data: Please check your information.')
     return render_template('register.html', form=form)

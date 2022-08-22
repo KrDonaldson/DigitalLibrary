@@ -55,14 +55,13 @@ class Book(db.Model):
     dewey = db.Column(db.String(50), nullable = True, default = '')
     edition = db.Column(db.String(50), nullable = True, default = '')
     publisher = db.Column(db.String(150), nullable = True, default = '')
-    date_published = db.Column(db.Date, nullable = True)
     cover = db.Column(db.Integer, nullable = True, default = 1)
     subjects = db.Column(db.String(150), nullable = True, default = '')
     description = db.Column(db.Text, nullable = True, default = '')
     series = db.Column(db.String(150), nullable = True, default = '')
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self,title, author, pages, isbn, dewey, edition, publisher, date_published, cover, subjects, decription, series, user_token, id = ''):
+    def __init__(self,title, author, pages, isbn, dewey, edition, publisher, cover, subjects, decription, series, user_token, id = ''):
         self.id = self.set_id()
         self.title = title
         self.author = author 
@@ -71,7 +70,6 @@ class Book(db.Model):
         self.dewey =dewey 
         self.edition = edition
         self.publisher = publisher
-        self.date_published = date_published
         self.cover = cover
         self.subjects = subjects
         self.decription = decription
@@ -86,7 +84,7 @@ class Book(db.Model):
 
 class BookSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'title', 'author', 'pages', 'isbn', 'dewey', 'edition', 'publisher', 'date_published', 'cover', 'subjects', 'decription', 'series']
+        fields = ['id', 'title', 'author', 'pages', 'isbn', 'dewey', 'edition', 'publisher', 'cover', 'subjects', 'decription', 'series']
 
 book_schema = BookSchema()
 books_schema = BookSchema(many=True)
